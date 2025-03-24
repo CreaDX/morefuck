@@ -8,29 +8,29 @@ function App() {
   const [morseCode, setMorseCode] = useState("");
 
   const handleInputChange = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
 
     const value = event.target.value;
 
     // Only allow '.' and '-' characters
-    //if (/^[.-]*$/.test(value)) {
+    if (/^[.-]*$/.test(value)) {
       setMorseCode(value); // Update state if the value is valid
      console.log(morseCode);
-    //}
+    }
   };
 
-  async function sigma() {
-    
-    const ws = await WebSocket.connect('ws://127.0.0.1:8080');
+   // async function sigma() {
+      
+     // const ws = await WebSocket.connect('ws://127.0.0.1:8080');
 
-    ws.addListener((msg) => {
-      console.log('Received Message:', msg);
-    });
+     // ws.addListener((msg) => {
+     //   console.log('Received Message:', msg);
+     // });
 
-    await ws.send('Hello World!');
+     // await ws.send('Hello World!');
 
-    await ws.disconnect();
-  }
+      //await ws.disconnect();
+    //}
 
   return (
     <div className="App">
@@ -40,6 +40,7 @@ function App() {
         <input
         type="text"
         value={morseCode}
+        onChange={handleInputChange}
         placeholder="Enter . and - only"
       />
       <button type="submit">Send Morse Code</button>
